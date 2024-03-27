@@ -10,7 +10,6 @@ class DispositivoBase(BaseModel):
     fecha_hora: datetime
     latitud: Decimal
     longitud: Decimal
-    marca: str
 
 class DispositivoCreate(DispositivoBase):
     pass
