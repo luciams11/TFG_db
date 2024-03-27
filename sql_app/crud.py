@@ -6,12 +6,14 @@ from . import models, schemas
 #def get_dispositivo(db: Session, dispositivo_id: int):
 #    return db.query(models.Dispositivo).filter(models.Dispositivo.id == dispositivo_id).first()
 
+def get_dispositivo(db: Session, hashed_mac: str, fecha_hora: str, latitud: str, longitud: str):
+ return db.query(models.Dispositivo).filter(models.Dispositivo.hashed_mac == hashed_mac, models.Dispositivo.fecha_hora == fecha_hora, models.Dispositivo.latitud == latitud, models.Dispositivo.longitud == longitud).first()
 
 def get_dispositivo_by_hashed_mac(db: Session, hashed_mac: str):
     return db.query(models.Dispositivo).filter(models.Dispositivo.hashed_mac == hashed_mac).first()
 
 
-def get_dispositivos(db: Session, skip: int = 0, limit: int = 100):
+def get_dispositivos(db: Session, skip: int = 0, limit: int = 100000):
     return db.query(models.Dispositivo).offset(skip).limit(limit).all()
 
 

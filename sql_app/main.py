@@ -20,14 +20,14 @@ def get_db():
 
 @app.post("/dispositivos/", response_model=schemas.DispositivoCreate)
 def create_dispositivo(dispositivo: schemas.DispositivoCreate, db: Session = Depends(get_db)):
-    db_dispositivo = crud.get_dispositivo_by_hashed_mac(db, hashed_mac=dispositivo.hashed_mac)
+    db_dispositivo = crud.get_dispositivo(db, hashed_mac=dispositivo.hashed_mac, fecha_hora=dispositivo.fecha_hora, latitud=dispositivo.latitud, longitud=dispositivo.longitud)
     if db_dispositivo:
         raise HTTPException(status_code=400, detail="Hashed mac already registered")
     return crud.create_dispositivo(db=db, dispositivo=dispositivo)
 
 
 @app.get("/dispositivos/", response_model=list[schemas.Dispositivo])
-def read_dispositivos(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+def read_dispositivos(skip: int = 0, limit: int = 100000, db: Session = Depends(get_db)):
     dispositivos = crud.get_dispositivos(db, skip=skip, limit=limit)
     return dispositivos
 
