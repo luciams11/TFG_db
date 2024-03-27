@@ -16,7 +16,7 @@ def get_dispositivos(db: Session, skip: int = 0, limit: int = 100):
 
 
 def create_dispositivo(db: Session, dispositivo: schemas.Dispositivo):
-    db_dispositivo = models.Dispositivo(hashed_mac=dispositivo.hashed_mac, fecha_hora=dispositivo.fecha_hora, latitud=dispositivo.latitud, longitud=dispositivo.longitud, marca=dispositivo.marca)
+    db_dispositivo = models.Dispositivo(hashed_mac=dispositivo.hashed_mac, fecha_hora=dispositivo.fecha_hora, latitud=dispositivo.latitud, longitud=dispositivo.longitud)
     db.add(db_dispositivo)
     db.commit()
     db.refresh(db_dispositivo)

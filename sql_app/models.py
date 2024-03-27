@@ -10,5 +10,4 @@ class Dispositivo(Base):
     fecha_hora = Column(DateTime)
     latitud = Column(DECIMAL)
     longitud = Column(DECIMAL)
-    marca = Column(String)
 
