@@ -7,7 +7,8 @@ from typing import Optional
 
 class DispositivoBase(BaseModel):
     hashed_mac: str
-    fecha_hora: datetime
+    primera_fecha_hora: datetime
+    ultima_fecha_hora: datetime
     latitud: Decimal
     longitud: Decimal
 

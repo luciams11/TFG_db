@@ -7,7 +7,8 @@ class Dispositivo(Base):
 
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     hashed_mac = Column(String, index=True)
-    fecha_hora = Column(DateTime)
+    primera_fecha_hora = Column(DateTime)
+    ultima_fecha_hora = Column(DateTime)
     latitud = Column(DECIMAL)
     longitud = Column(DECIMAL)
 
