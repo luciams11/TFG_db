@@ -14,14 +14,10 @@ models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(debug=True)
 
-print("¡La aplicación FastAPI se ha iniciado correctamente!")
-
 app.add_middleware(GZipMiddleware, minimum_size=1000)
 
 
 
-
-# Dependency
 def get_db():
     db = SessionLocal()
     try:
@@ -46,7 +42,7 @@ async def create_dispositivo(rec: Request, db: Session = Depends(get_db)):
     # Decodificar los datos descomprimidos como una cadena UTF-8
     decoded_data = decompressed_data.decode('utf-8')
     print("decoded_data: ", decoded_data)
-    return crud.create_dispositivo(decoded_data, db=db)
+    return crud.analyze_data(decoded_data, db=db)
 
 
 @app.get("/dispositivos/", response_model=list[schemas.Dispositivo])
